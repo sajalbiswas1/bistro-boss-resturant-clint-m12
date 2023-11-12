@@ -3,6 +3,7 @@ import BistroBoss from "./BistroBoss/BistroBoss";
 import Category from "./Category/Category";
 import Featured from "./Featured/Featured";
 import PopularMenu from "./PopularMenu/Popularmenu";
+import Testimonial from "./Testimonial/Testimonial";
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <BistroBoss></BistroBoss>
             <PopularMenu></PopularMenu>
             <Featured></Featured>
+            <Testimonial></Testimonial>
         </div>
     );
 };
