@@ -3,7 +3,7 @@ import './BistroBoss.css'
 const BistroBoss = () => {
     return (
         <div className='my-10'>
-            <div className="relative h-3/6" style={{
+            <div className="relative h-3/6 bg-fixed" style={{
                 backgroundImage: `url(${img})`,
                 height: '400px',
                 backgroundPosition: 'center'
