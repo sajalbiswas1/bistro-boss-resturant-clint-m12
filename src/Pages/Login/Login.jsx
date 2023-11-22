@@ -1,11 +1,11 @@
 import {  useContext, useEffect, useRef, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
+    
     const {signInUser}= useContext(AuthContext);
     const captchaRef = useRef(null);
     const [disable, setDisable]= useState(true);
@@ -51,9 +51,7 @@ const handleValidateChaptcha = (e) =>{
 }
     return (
         <div>
-            <Helmet>
-                <title>Bistro Boss | Login</title>
-            </Helmet>
+           
             <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex ">
                 <div className="text-center lg:text-left">

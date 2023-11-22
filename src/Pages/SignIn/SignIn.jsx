@@ -5,23 +5,23 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const SignIn = () => {
-    const { createUser } = useContext(AuthContext);
-    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const { createUser, updateUser } = useContext(AuthContext);
+    const { register, handleSubmit,reset, formState: { errors }, } = useForm();
     const onSubmit = (data) => {
         createUser(data.email,data.password)
+        .then(result => {
+            console.log(result)
+            updateUser(data.name, data.igmUrl)
+            .then(res =>{
+                console.log(res)
+                reset()
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        })
+        console.log(data)
     }
-
-
-    // const handleForm = e =>{
-    //     e.preventDefault()
-    //     const name = e.target.text.value;
-    //     const email = e.target.email.value;
-    //     const password = e.target.password.value;
-    //     console.log(name,email,password)
-    //     createUser(email,password)
-    //     .then(res => console.log(res))
-    //     .catch(error  => console.log(error))
-    // }
 
     return (
         <div>
@@ -42,6 +42,13 @@ const SignIn = () => {
                                 </label>
                                 <input {...register("name", { required: true })} placeholder="enter your name" className="input input-bordered" />
                                 {errors.name && <span className="text-red-500">This field is required</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Image url</span>
+                                </label>
+                                <input {...register("igmUrl", { required: true })} placeholder="enter your img url" className="input input-bordered" />
+                                {errors.igmUrl && <span className="text-red-500">This field is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
