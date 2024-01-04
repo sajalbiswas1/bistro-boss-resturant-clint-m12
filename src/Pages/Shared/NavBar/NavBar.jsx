@@ -1,20 +1,25 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 const NavBar = () => {
-  const {user, userSignOut} =useContext(AuthContext)
+  const { user, userSignOut } = useContext(AuthContext)
   const navList = <>
     <li><Link to="/">Home</Link></li>
     <li><Link to="/menu">Our Menu</Link></li>
     <li><Link to="/order/salads">Order</Link></li>
     <li><Link to="/login">Login</Link></li>
+    <li><Link><button className="btn h-4">
+    <HiOutlineShoppingCart  />
+      <div className="badge badge-secondary">+99</div>
+    </button></Link></li>
     <li><Link to="/secret">Secret</Link></li>
   </>
-  const handleSignOut = ()=>{
+  const handleSignOut = () => {
     userSignOut()
-    .then(res => console.log(res))
-    .catch(error => console.log(error))
+      .then(res => console.log(res))
+      .catch(error => console.log(error))
   }
   return (
     <>
@@ -37,10 +42,10 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           {
-            user?.email ? <Link onClick={handleSignOut}  className="btn">SignOut</Link>
-            :<Link className="btn" to={'/login'}>LogIn</Link>
+            user?.email ? <Link onClick={handleSignOut} className="btn">SignOut</Link>
+              : <Link className="btn" to={'/login'}>LogIn</Link>
           }
-          
+
         </div>
       </div>
 
