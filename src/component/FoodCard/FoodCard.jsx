@@ -1,7 +1,31 @@
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const FoodCard = ({item}) => {
+    const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
     const {name, recipe, image, price} = item
     const handleCard =(item)=>{
+        if(user && user.email){
+            //todo: send card item in database
+        }
+        else{
+            Swal.fire({
+                title: "Plase login to add to the card?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, LogIn!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login')
+                }
+              });
+        }
         console.log(item)
     }
     return (
